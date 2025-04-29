@@ -50,7 +50,7 @@ export async function loginUser(req, res) {
         }
 
         // JWT payload
-        const payload = { id: user._id, username: user.username };
+        const payload = { id: user._id, username: user.username, role: user.role };
         const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: "2h" });
 
         res.json({

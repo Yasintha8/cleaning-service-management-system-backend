@@ -29,7 +29,7 @@ export async function createService(req,res){
     }
 }
 export function getServices(req,res){
-    service.find().then(
+    Service.find().then(
         (services)=>{
             res.json(services)
         }
