@@ -5,8 +5,8 @@ const serviceRouter = express.Router();
 
 serviceRouter.post("/", createService)
 serviceRouter.get("/",getServices)
-serviceRouter.get("/:Id",getServiceById)
-serviceRouter.delete("/:serviceId",deleteService)
-serviceRouter.put("/:serviceId",updateService)
+serviceRouter.get("/:_id",getServiceById)
+serviceRouter.delete("/:_id",deleteService)
+serviceRouter.put("/:_id",updateService)
 
 export default serviceRouter;

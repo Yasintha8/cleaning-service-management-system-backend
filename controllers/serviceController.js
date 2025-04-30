@@ -44,8 +44,8 @@ export function getServices(req,res){
 }
 
 export async function getServiceById(req,res){
-    const serviceId = req.params.Id
-    const service = await Service.findOne({serviceId : serviceId});
+    const _id = req.params._id;
+    const service = await Service.findOne({_id : _id});
     if(service == null){
         res.status(404).json({
             message : "Service not found"
@@ -74,19 +74,19 @@ export function deleteService(req,res){
     }
 
 
-Service.findOneAndDelete({"serviceId" : req.params._id}).then(
-    ()=>{
-        res.json({
-            message : "Service deleted successfully"
-        })
-    }
-).catch(
-    (err)=>{
-        res.status(500).json({
-            message : "Service not deleted"
-        })
-    }
-  )
+    Service.findOneAndDelete({ _id: req.params._id }).then(
+        () => {
+            res.json({
+                message: "Service deleted successfully"
+            })
+        }
+    ).catch(
+        (err) => {
+            res.status(500).json({
+                message: "Service not deleted"
+            })
+        }
+    )    
 }
 
 export function updateService(req,res){
@@ -104,18 +104,18 @@ export function updateService(req,res){
         return;
     }
 
-    Service.findOneAndUpdate({"serviceId" : req.params._id} 
-        ,req.body).then(
-        ()=>{
+    Service.findOneAndUpdate({ _id: req.params._id }, req.body).then(
+        () => {
             res.json({
-                message : "Service updated successfully"
+                message: "Service updated successfully"
             })
         }
     ).catch(
-        (err)=>{
+        (err) => {
             res.status(500).json({
-                message : "service not updated"
+                message: "Service not updated"
             })
         }
     )
+    
 }
