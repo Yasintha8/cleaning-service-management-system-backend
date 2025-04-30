@@ -74,7 +74,7 @@ export function deleteService(req,res){
     }
 
 
-Service.findOneAndDelete({"service._id" : req.params._id}).then(
+Service.findOneAndDelete({"serviceId" : req.params._id}).then(
     ()=>{
         res.json({
             message : "Service deleted successfully"
@@ -104,7 +104,7 @@ export function updateService(req,res){
         return;
     }
 
-    Service.findOneAndUpdate({"serviceId" : req.params.serviceId} 
+    Service.findOneAndUpdate({"serviceId" : req.params._id} 
         ,req.body).then(
         ()=>{
             res.json({
