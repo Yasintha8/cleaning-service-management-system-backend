@@ -62,3 +62,13 @@ export async function loginUser(req, res) {
         res.status(500).json({ message: "Login failed", error: err.message });
     }
 }
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({}, "username role"); // Only return needed fields
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch users" });
+  }
+};
+
