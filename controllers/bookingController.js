@@ -53,13 +53,20 @@ export const updateBooking = async (req, res) => {
             req.params.id,
             req.body,
             { new: true, runValidators: true }
-        );
+          ).populate("service_id", "name");          
 
         if (!updatedBooking) {
             return res.status(404).json({ message: "Booking not found" });
         }
 
-        res.status(200).json(updatedBooking);
+        // Format the response with a flat structure
+        const booking = updatedBooking.toObject();
+        const response = {
+            ...booking,
+            service_name: booking.service_id?.name || "", // Flatten it
+        };
+
+        res.status(200).json(response);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
