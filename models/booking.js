@@ -1,54 +1,12 @@
 import mongoose from "mongoose";
 
-const orderSchema = new mongoose.Schema({
-    orderID :{
-        type : String,
-        required : true,
-        unique : true
-    },
-    date :{
-        type : Date,
-        required : true,
-        default : Date.now
-    },
-    email:{
-        type : String,
-        required : true
-    },
-    name:{
-        type : String,
-        required : true
-    },
-    address:{
-        type : String,
-        required : true
-    },
-    status:{
-        type : String,
-        required : true,
-        default : "Pending"
-    },
-    phoneNumber:{
-        type : String,
-        required : true
-    },
-    billItems:{
-        type:[
-            {
-                productId : String,
-                productName : String,
-                image : String,
-                quantity : Number,
-                price : Number
-            }
-        ],
-        required : true
-    },
-    total:{
-        type:Number,
-        required : true
-    }
+const bookingSchema = new mongoose.Schema({
+    customer_name: { type: String, required: true },
+    address: { type: String, required: true },
+    date_time: { type: Date, required: true },
+    service_id: { type: mongoose.Schema.Types.ObjectId, ref: 'services', required: true },
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true }
 })
 
-const Order = mongoose.model("orders",orderSchema);
-export default Order;
+const Booking = mongoose.model("bookings",bookingSchema);
+export default Booking;

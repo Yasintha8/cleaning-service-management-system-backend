@@ -3,10 +3,10 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import userRouter from "./routes/userRouter.js";
 import verifyJWT from "./middleware/auth.js";
-import orderRouter from "./routes/orderRouter.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import serviceRouter from "./routes/serviceRouter.js";
+import bookingRouter from "./routes/bookingRouter.js";
 dotenv.config();
 
 const app = express();
@@ -29,7 +29,7 @@ app.use(verifyJWT);
 
 app.use("/api/user", userRouter);
 app.use("/api/service", serviceRouter);
-app.use("/api/order", orderRouter);
+app.use("/api/bookings", bookingRouter);
 
 
 app.listen(5000, 
