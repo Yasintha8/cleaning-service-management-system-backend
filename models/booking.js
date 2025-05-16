@@ -6,7 +6,11 @@ const bookingSchema = new mongoose.Schema({
     date_time: { type: Date, required: true },
     service_id: { type: mongoose.Schema.Types.ObjectId, ref: 'services', required: true },
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true }
-})
+},{
+    
+    timestamps: true
+}
+)
 
 const Booking = mongoose.model("bookings",bookingSchema);
 export default Booking;
