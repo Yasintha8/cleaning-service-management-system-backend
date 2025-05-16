@@ -72,3 +72,14 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
+export function getCurrentUser(req,res){
+    if(req.user == null){
+        res.status(403).json({
+            message : "Please login first"
+        })
+        return;
+    }
+    res.json({
+        user : req.user
+    })
+}
